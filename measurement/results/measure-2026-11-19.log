@@ -1,0 +1,31 @@
+21:24:27 express run 1: cloning
+21:24:27 express run 1: installing
+21:24:39 express run 1: clone 0.8s, install 12.0s, total 12.8s, ok=True
+21:24:40 express run 2: cloning
+21:24:40 express run 2: installing
+21:24:52 express run 2: clone 0.6s, install 11.9s, total 12.5s, ok=True
+21:24:53 express run 3: cloning
+21:24:53 express run 3: installing
+21:25:05 express run 3: clone 0.6s, install 12.1s, total 12.7s, ok=True
+21:25:06 fastify run 1: cloning
+21:25:07 fastify run 1: installing
+21:25:29 fastify run 1: clone 0.8s, install 22.2s, total 23.0s, ok=True
+21:25:30 fastify run 2: cloning
+21:25:30 fastify run 2: installing
+21:25:52 fastify run 2: clone 0.7s, install 21.7s, total 22.4s, ok=True
+21:25:53 fastify run 3: cloning
+21:25:54 fastify run 3: installing
+21:26:16 fastify run 3: clone 0.7s, install 22.4s, total 23.1s, ok=True
+21:26:17 flask run 1: cloning
+21:26:17 flask run 1: installing
+21:26:23 flask run 1: clone 0.7s, install 5.4s, total 6.1s, ok=True
+21:26:23 flask run 2: cloning
+21:26:24 flask run 2: installing
+21:26:29 flask run 2: clone 0.7s, install 5.1s, total 5.8s, ok=True
+21:26:29 flask run 3: cloning
+21:26:30 flask run 3: installing
+21:26:35 flask run 3: clone 0.7s, install 5.0s, total 5.7s, ok=True
+21:26:35 SUMMARY express: median 12.7s over 3 runs
+21:26:35 SUMMARY fastify: median 23.0s over 3 runs
+21:26:35 SUMMARY flask: median 5.8s over 3 runs
+21:26:35 DONE

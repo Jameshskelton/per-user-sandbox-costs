@@ -1,0 +1,293 @@
+{
+  "captured_on": "2026-11-19",
+  "currency": "USD",
+  "note": "List prices from each provider's public pricing page. See README for scope and exclusions.",
+  "prices": [
+    {
+      "provider": "DigitalOcean",
+      "product": "Harness Runtime",
+      "item": "cpu",
+      "value": 0.044,
+      "unit": "USD per vCPU-hour",
+      "billing_basis": "Currently billed at a flat 25% of allocated vCPUs until active CPU billing ships",
+      "source_url": "https://www.digitalocean.com/pricing/harness-runtime",
+      "captured_on": "2026-11-19",
+      "notes": "Public preview. The docs pricing page (last verified 2026-11-05) describes active CPU billing; the model follows the public pricing page."
+    },
+    {
+      "provider": "DigitalOcean",
+      "product": "Harness Runtime",
+      "item": "memory",
+      "value": 0.0095,
+      "unit": "USD per GB-hour",
+      "billing_basis": "Peak memory used",
+      "source_url": "https://www.digitalocean.com/pricing/harness-runtime",
+      "captured_on": "2026-11-19",
+      "notes": "The docs pricing page describes memory allocated over time."
+    },
+    {
+      "provider": "DigitalOcean",
+      "product": "Harness Runtime",
+      "item": "session_storage",
+      "value": 0.05,
+      "unit": "USD per GiB-month",
+      "billing_basis": "Storage, including while paused",
+      "source_url": "https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/pricing/",
+      "captured_on": "2026-11-19",
+      "notes": "Snapshot/checkpoint storage is listed at the same rate. Billed for the full month (running and paused)."
+    },
+    {
+      "provider": "E2B",
+      "product": "Sandbox",
+      "item": "cpu",
+      "value": 0.0504,
+      "unit": "USD per vCPU-hour",
+      "billing_basis": "Reserved, per second while running ($0.000014 per vCPU-second)",
+      "source_url": "https://e2b.dev/pricing",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "E2B",
+      "product": "Sandbox",
+      "item": "memory",
+      "value": 0.0162,
+      "unit": "USD per GiB-hour",
+      "billing_basis": "Reserved, per second while running ($0.0000045 per GiB-second)",
+      "source_url": "https://e2b.dev/pricing",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "E2B",
+      "product": "Sandbox",
+      "item": "pro_plan",
+      "value": 150.0,
+      "unit": "USD per month",
+      "billing_basis": "Plan fee",
+      "source_url": "https://e2b.dev/pricing",
+      "captured_on": "2026-11-19",
+      "notes": "Hobby tier caps concurrency at 20 sandboxes; Pro assumed for 1,000 users."
+    },
+    {
+      "provider": "Daytona",
+      "product": "Sandbox",
+      "item": "cpu",
+      "value": 0.0504,
+      "unit": "USD per vCPU-hour",
+      "billing_basis": "Reserved while running",
+      "source_url": "https://www.daytona.io/pricing",
+      "captured_on": "2026-11-19",
+      "notes": "Same published rate for container and Linux VM classes."
+    },
+    {
+      "provider": "Daytona",
+      "product": "Sandbox",
+      "item": "memory",
+      "value": 0.0162,
+      "unit": "USD per GiB-hour",
+      "billing_basis": "Reserved while running",
+      "source_url": "https://www.daytona.io/pricing",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Daytona",
+      "product": "Sandbox",
+      "item": "disk",
+      "value": 0.000108,
+      "unit": "USD per GiB-hour",
+      "billing_basis": "Beyond the first 5 GiB, billed running and stopped",
+      "source_url": "https://www.daytona.io/pricing",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Daytona",
+      "product": "Sandbox",
+      "item": "free_disk",
+      "value": 5.0,
+      "unit": "GiB per sandbox",
+      "billing_basis": "Included disk",
+      "source_url": "https://www.daytona.io/pricing",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Modal",
+      "product": "Sandboxes",
+      "item": "cpu",
+      "value": 0.14191,
+      "unit": "USD per physical core-hour",
+      "billing_basis": "Greater of reserved or used ($0.00003942 per core-second)",
+      "source_url": "https://modal.com/pricing",
+      "captured_on": "2026-11-19",
+      "notes": "One physical core = 2 vCPU; the model uses 0.070955 per vCPU-hour. Modeled with no reservation."
+    },
+    {
+      "provider": "Modal",
+      "product": "Sandboxes",
+      "item": "memory",
+      "value": 0.024012,
+      "unit": "USD per GiB-hour",
+      "billing_basis": "Greater of reserved or used ($0.00000667 per GiB-second)",
+      "source_url": "https://modal.com/pricing",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Vercel",
+      "product": "Vercel Sandbox",
+      "item": "cpu",
+      "value": 0.128,
+      "unit": "USD per active vCPU-hour",
+      "billing_basis": "Active CPU",
+      "source_url": "https://vercel.com/docs/vercel-sandbox/pricing",
+      "captured_on": "2026-11-19",
+      "notes": "iad1 region."
+    },
+    {
+      "provider": "Vercel",
+      "product": "Vercel Sandbox",
+      "item": "memory",
+      "value": 0.0212,
+      "unit": "USD per GB-hour",
+      "billing_basis": "Provisioned memory",
+      "source_url": "https://vercel.com/docs/vercel-sandbox/pricing",
+      "captured_on": "2026-11-19",
+      "notes": "Main pricing page shows $0.0212. A docs mirror (examples.vercel.com) has shown $0.0424; the main page is cited."
+    },
+    {
+      "provider": "Vercel",
+      "product": "Vercel Sandbox",
+      "item": "snapshot_storage",
+      "value": 0.08,
+      "unit": "USD per GB-month",
+      "billing_basis": "Filesystem snapshots",
+      "source_url": "https://vercel.com/docs/vercel-sandbox/pricing",
+      "captured_on": "2026-11-19",
+      "notes": "Billed for the full month on the assumption the snapshot is retained between sessions."
+    },
+    {
+      "provider": "Vercel",
+      "product": "Vercel Sandbox",
+      "item": "pro_plan",
+      "value": 20.0,
+      "unit": "USD per month",
+      "billing_basis": "Plan fee, drawn as usage credit",
+      "source_url": "https://vercel.com/docs/vercel-sandbox/pricing",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Cloudflare",
+      "product": "Sandbox SDK (Containers)",
+      "item": "cpu",
+      "value": 0.072,
+      "unit": "USD per active vCPU-hour",
+      "billing_basis": "Active CPU ($0.000020 per vCPU-second)",
+      "source_url": "https://developers.cloudflare.com/containers/platform/pricing/",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Cloudflare",
+      "product": "Sandbox SDK (Containers)",
+      "item": "memory",
+      "value": 0.009,
+      "unit": "USD per GiB-hour",
+      "billing_basis": "Provisioned memory ($0.0000025 per GiB-second)",
+      "source_url": "https://developers.cloudflare.com/containers/platform/pricing/",
+      "captured_on": "2026-11-19",
+      "notes": "Model bills 6 GiB for 2 vCPU: custom-instance minimum of 3 GiB per vCPU (from third-party write-ups; predefined standard-3 has 8 GiB)."
+    },
+    {
+      "provider": "Cloudflare",
+      "product": "Sandbox SDK (Containers)",
+      "item": "disk",
+      "value": 0.000252,
+      "unit": "USD per GB-hour",
+      "billing_basis": "Provisioned disk while running ($0.00000007 per GB-second)",
+      "source_url": "https://developers.cloudflare.com/containers/platform/pricing/",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Cloudflare",
+      "product": "Sandbox SDK (Containers)",
+      "item": "workers_paid_plan",
+      "value": 5.0,
+      "unit": "USD per month",
+      "billing_basis": "Plan fee",
+      "source_url": "https://developers.cloudflare.com/containers/platform/pricing/",
+      "captured_on": "2026-11-19",
+      "notes": "Included allowances not deducted."
+    },
+    {
+      "provider": "Fly.io",
+      "product": "Sprites",
+      "item": "cpu",
+      "value": 0.0385,
+      "unit": "USD per CPU-hour",
+      "billing_basis": "CPU used",
+      "source_url": "https://fly.io/sprites",
+      "captured_on": "2026-11-19",
+      "notes": "Fly's 2026 pricing-update page has been quoted at $0.03825."
+    },
+    {
+      "provider": "Fly.io",
+      "product": "Sprites",
+      "item": "memory",
+      "value": 0.021875,
+      "unit": "USD per GB-hour",
+      "billing_basis": "Memory used",
+      "source_url": "https://fly.io/sprites",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Fly.io",
+      "product": "Sprites",
+      "item": "hot_storage",
+      "value": 0.000683,
+      "unit": "USD per GB-hour",
+      "billing_basis": "While awake",
+      "source_url": "https://fly.io/sprites",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "Fly.io",
+      "product": "Sprites",
+      "item": "cold_storage",
+      "value": 2.7e-05,
+      "unit": "USD per GB-hour",
+      "billing_basis": "While asleep",
+      "source_url": "https://fly.io/sprites",
+      "captured_on": "2026-11-19",
+      "notes": ""
+    },
+    {
+      "provider": "AWS",
+      "product": "Bedrock AgentCore Runtime (v2)",
+      "item": "cpu",
+      "value": 0.1276,
+      "unit": "USD per vCPU-hour",
+      "billing_basis": "Active CPU consumed",
+      "source_url": "https://aws.amazon.com/bedrock/agentcore/pricing/",
+      "captured_on": "2026-11-19",
+      "notes": "us-east-1, v2 consumption pricing. v1 was $0.0895."
+    },
+    {
+      "provider": "AWS",
+      "product": "Bedrock AgentCore Runtime (v2)",
+      "item": "memory",
+      "value": 0.0169,
+      "unit": "USD per GB-hour",
+      "billing_basis": "Memory consumed; idle memory reclaimed after 120 s",
+      "source_url": "https://aws.amazon.com/bedrock/agentcore/pricing/",
+      "captured_on": "2026-11-19",
+      "notes": "v1 was $0.00945."
+    }
+  ]
+}

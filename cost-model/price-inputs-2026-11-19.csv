@@ -1,0 +1,27 @@
+provider,product,item,value,unit,billing_basis,source_url,captured_on,notes
+DigitalOcean,Harness Runtime,cpu,0.044,USD per vCPU-hour,Currently billed at a flat 25% of allocated vCPUs until active CPU billing ships,https://www.digitalocean.com/pricing/harness-runtime,2026-11-19,Public preview. The docs pricing page (last verified 2026-11-05) describes active CPU billing; the model follows the public pricing page.
+DigitalOcean,Harness Runtime,memory,0.0095,USD per GB-hour,Peak memory used,https://www.digitalocean.com/pricing/harness-runtime,2026-11-19,The docs pricing page describes memory allocated over time.
+DigitalOcean,Harness Runtime,session_storage,0.05,USD per GiB-month,"Storage, including while paused",https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/pricing/,2026-11-19,Snapshot/checkpoint storage is listed at the same rate. Billed for the full month (running and paused).
+E2B,Sandbox,cpu,0.0504,USD per vCPU-hour,"Reserved, per second while running ($0.000014 per vCPU-second)",https://e2b.dev/pricing,2026-11-19,
+E2B,Sandbox,memory,0.0162,USD per GiB-hour,"Reserved, per second while running ($0.0000045 per GiB-second)",https://e2b.dev/pricing,2026-11-19,
+E2B,Sandbox,pro_plan,150,USD per month,Plan fee,https://e2b.dev/pricing,2026-11-19,"Hobby tier caps concurrency at 20 sandboxes; Pro assumed for 1,000 users."
+Daytona,Sandbox,cpu,0.0504,USD per vCPU-hour,Reserved while running,https://www.daytona.io/pricing,2026-11-19,Same published rate for container and Linux VM classes.
+Daytona,Sandbox,memory,0.0162,USD per GiB-hour,Reserved while running,https://www.daytona.io/pricing,2026-11-19,
+Daytona,Sandbox,disk,0.000108,USD per GiB-hour,"Beyond the first 5 GiB, billed running and stopped",https://www.daytona.io/pricing,2026-11-19,
+Daytona,Sandbox,free_disk,5,GiB per sandbox,Included disk,https://www.daytona.io/pricing,2026-11-19,
+Modal,Sandboxes,cpu,0.14191,USD per physical core-hour,Greater of reserved or used ($0.00003942 per core-second),https://modal.com/pricing,2026-11-19,One physical core = 2 vCPU; the model uses 0.070955 per vCPU-hour. Modeled with no reservation.
+Modal,Sandboxes,memory,0.024012,USD per GiB-hour,Greater of reserved or used ($0.00000667 per GiB-second),https://modal.com/pricing,2026-11-19,
+Vercel,Vercel Sandbox,cpu,0.128,USD per active vCPU-hour,Active CPU,https://vercel.com/docs/vercel-sandbox/pricing,2026-11-19,iad1 region.
+Vercel,Vercel Sandbox,memory,0.0212,USD per GB-hour,Provisioned memory,https://vercel.com/docs/vercel-sandbox/pricing,2026-11-19,Main pricing page shows $0.0212. A docs mirror (examples.vercel.com) has shown $0.0424; the main page is cited.
+Vercel,Vercel Sandbox,snapshot_storage,0.08,USD per GB-month,Filesystem snapshots,https://vercel.com/docs/vercel-sandbox/pricing,2026-11-19,Billed for the full month on the assumption the snapshot is retained between sessions.
+Vercel,Vercel Sandbox,pro_plan,20,USD per month,"Plan fee, drawn as usage credit",https://vercel.com/docs/vercel-sandbox/pricing,2026-11-19,
+Cloudflare,Sandbox SDK (Containers),cpu,0.072,USD per active vCPU-hour,Active CPU ($0.000020 per vCPU-second),https://developers.cloudflare.com/containers/platform/pricing/,2026-11-19,
+Cloudflare,Sandbox SDK (Containers),memory,0.009,USD per GiB-hour,Provisioned memory ($0.0000025 per GiB-second),https://developers.cloudflare.com/containers/platform/pricing/,2026-11-19,Model bills 6 GiB for 2 vCPU: custom-instance minimum of 3 GiB per vCPU (from third-party write-ups; predefined standard-3 has 8 GiB).
+Cloudflare,Sandbox SDK (Containers),disk,0.000252,USD per GB-hour,Provisioned disk while running ($0.00000007 per GB-second),https://developers.cloudflare.com/containers/platform/pricing/,2026-11-19,
+Cloudflare,Sandbox SDK (Containers),workers_paid_plan,5,USD per month,Plan fee,https://developers.cloudflare.com/containers/platform/pricing/,2026-11-19,Included allowances not deducted.
+Fly.io,Sprites,cpu,0.0385,USD per CPU-hour,CPU used,https://fly.io/sprites,2026-11-19,Fly's 2026 pricing-update page has been quoted at $0.03825.
+Fly.io,Sprites,memory,0.021875,USD per GB-hour,Memory used,https://fly.io/sprites,2026-11-19,
+Fly.io,Sprites,hot_storage,0.000683,USD per GB-hour,While awake,https://fly.io/sprites,2026-11-19,
+Fly.io,Sprites,cold_storage,2.7e-05,USD per GB-hour,While asleep,https://fly.io/sprites,2026-11-19,
+AWS,Bedrock AgentCore Runtime (v2),cpu,0.1276,USD per vCPU-hour,Active CPU consumed,https://aws.amazon.com/bedrock/agentcore/pricing/,2026-11-19,"us-east-1, v2 consumption pricing. v1 was $0.0895."
+AWS,Bedrock AgentCore Runtime (v2),memory,0.0169,USD per GB-hour,Memory consumed; idle memory reclaimed after 120 s,https://aws.amazon.com/bedrock/agentcore/pricing/,2026-11-19,v1 was $0.00945.

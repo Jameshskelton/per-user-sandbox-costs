@@ -1,68 +1,88 @@
-# Model synthesis measurement harness
+# Per-user sandbox costs
 
-Four files. `configs.json` defines the arms, `tasks.jsonl` holds your questions,
-`run.py` makes the calls, `analyze.py` produces `metrics.md`.
+Data, cost model, and measurement script behind the DigitalOcean article
+**"One Sandbox Per User: Isolating AI Agents at Scale, and What Pause/Resume Changes"**
+([ARTICLE URL]).
 
-## Setup
+**Prices as of: November 19, 2026** · Current release: `v2026-11-19`
 
-```bash
-pip install requests
-export DO_INFERENCE_KEY=...
+This repository lets you check every number in the article without taking our word for it:
+
+- **Cost model:** what it costs to give 1,000 users their own sandbox on eight providers, at published list prices.
+- **Price inputs:** every rate the model uses, with its source URL and capture date, as CSV and JSON.
+- **Rebuild measurement:** the script, exact commands, and raw results for timing a fresh clone and dependency install.
+
+> **Disclosure:** This repository is maintained by James Skelton, the article's author, who works at DigitalOcean. DigitalOcean Harness Runtime is one of the providers compared. Harness Runtime is in public preview; its features, pricing, and limits may change before general availability.
+
+## Contents
+
+```
+.
+├── README.md                          This file, including the changelog
+├── LICENSE                            MIT (code in measurement/)
+├── cost-model/
+│   ├── README.md                      Assumptions, scenarios, and how to edit the model
+│   ├── LICENSE                        CC BY 4.0 (model and data)
+│   ├── per-user-sandbox-cost-model.xlsx
+│   ├── price-inputs-2026-11-19.csv    Every rate, with source URL and capture date
+│   ├── price-inputs-2026-11-19.json   Same data as JSON
+│   └── provider-behavior-2026-11-19.csv  Isolation, idle defaults, and what survives a pause
+└── measurement/
+    ├── README.md                      Environment, exact commands, and results
+    ├── measure_rebuild.py             Clone-and-install timing script
+    ├── rebuild-test.yaml              Harness Runtime sandbox spec used for the run
+    ├── requirements.txt
+    └── results/
+        ├── rebuild-results-2026-11-19.csv   Every run, not just medians
+        └── measure-2026-11-19.log           Raw log from the run
 ```
 
-Fill in `prices.json` (USD per 1M tokens, plus the cache-read rate) and set
-`_snapshot_date`. If you can't find a cache-read rate, set it equal to `input`
-and say in the article that cost is an upper bound.
+## Results at a glance
 
-## Order of operations
+Monthly cost of one sandbox per user, 1,000 users, default settings (20 sessions of 45 minutes per user per month, 2 vCPU / 4 GB, 25% CPU while working, 1.5 GB memory in use, 10 GB disk):
 
-```bash
-# 1. See what you're about to spend. Makes no calls.
-python3 run.py --phase a --dry-run
+| Provider | Per user / month | What survives idle (default) |
+|---|---|---|
+| Fly.io Sprites | $1.08 | Files (memory only while warm) |
+| Modal Sandboxes | $1.13 | Nothing |
+| DigitalOcean Harness Runtime | $1.23 | Processes, memory, and files |
+| AWS AgentCore Runtime | $1.35 | Nothing |
+| Cloudflare Sandbox | $1.58 | Nothing |
+| E2B | $2.91 | Nothing (default timeout action kills the sandbox) |
+| Vercel Sandbox | $3.17 | Files |
+| Daytona (container) | $3.71 | Files |
 
-# 2. Smoke test: 2 tasks, all configs. Confirm responses parse.
-python3 run.py --phase a --limit 2
-python3 analyze.py --results results.jsonl
+Fresh clone and dependency install on a Harness Runtime `mars-2vcpu-4gb` sandbox (median of 3 runs): Flask 5.8 s, Express 12.7 s, Fastify 23.0 s.
 
-# 3. STOP HERE and extrapolate cost from step 2 before continuing.
-#    A 4-model synthesis call was observed at ~374,000 tokens.
+See `cost-model/README.md` for the best-configuration scenario, sensitivity tables, and all exclusions.
 
-# 4. Full collection pass.
-python3 run.py --phase a --concurrency 4
+## How to verify or change the numbers
 
-# 5. Latency pass. Sequential by force. Only these timings are valid.
-python3 run.py --phase b --latency-tasks 7
+- **Check a price:** open `cost-model/price-inputs-2026-11-19.csv`, follow the `source_url`, and compare. Prices change; the capture date is on every row.
+- **Change the assumptions:** open the `.xlsx` (or the Google Sheet copy, [SHEET COPY URL]) and edit the yellow cells on the **Inputs** sheet. Every result is a live formula.
+- **Reproduce the rebuild timing:** follow `measurement/README.md`.
 
-# 6. Results.
-python3 analyze.py --out metrics.md
-```
+Found an error or an outdated price? Open an issue with the provider, the rate, and a link to the source.
 
-Safe to interrupt and re-run at any point — completed calls are skipped.
+## Versioning
 
-## Call volume
+Each release is tagged with the date its prices were checked, in the form `vYYYY-MM-DD`. A tag is a fixed "as of" snapshot; the `main` branch carries the latest data. The article links to the tag it was written against.
 
-17 calls per task (reps included) x 21 tasks = ~357 calls in phase A,
-plus ~63 in phase B. The `synth_*` arms dominate the cost.
+## Changelog
 
-## Things that will need your attention
+### v2026-11-19
+- Initial release.
+- List prices for eight providers captured November 19, 2026.
+- DigitalOcean Harness Runtime modeled on current billing per its public pricing page: CPU at a flat 25% of allocated vCPUs and memory on peak use. The docs pricing page (last verified November 5, 2026) describes active CPU billing and allocated memory; this release follows the public pricing page.
+- Storage for DigitalOcean session storage and Vercel snapshots billed for the full month (running and paused), matching the Daytona convention.
+- Rebuild timing measured on three public repositories (Flask, Express, Fastify) on a Harness Runtime `mars-2vcpu-4gb` sandbox in `ric1`.
 
-- **`tasks.jsonl` is the real work.** Three examples are included; write 18 more
-  from the corpus in the spec. Every task needs an `options` array — that's what
-  makes the recommendations comparable without a human rater.
-- **Web search arms are disabled** in `configs.json` because the field names
-  aren't known yet. When you find them, put them in `extra_tool` / `extra_top`
-  and set `"enabled": true`.
-- **If qwen or deepseek reject `reasoning_effort`**, the runner drops it and
-  retries automatically, flagging `effort_dropped`. Check that column in section 7
-  of `metrics.md` — if either model dropped it, say so in the article, because
-  it explains the panel work imbalance.
-- **The judge arms need a panel that actually disagrees.** If section 5 reports
-  n < 5, `analyze.py` will tell you to swap the panel using the pairwise
-  agreement table. Re-run only those two configs:
-  `python3 run.py --phase a --only-config synth_judge_on --only-config synth_judge_off`
+### Planned
+- When Harness Runtime active CPU billing ships: set `W6` on the **Rates** sheet to 0, re-check all prices, regenerate the tables, and tag a new release.
 
-## One thing to watch in the output
+## License
 
-Token multiples and cost multiples diverge sharply — in testing, a config at
-163x the baseline's tokens came out at 45x the cost, because cache reads are
-cheap and two of the four panel models are small. **Quote cost, not tokens.**
+- Code in `measurement/` is licensed under the MIT License (see `LICENSE`).
+- The cost model and data in `cost-model/` are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0) (see `cost-model/LICENSE`).
+
+Provider names and trademarks belong to their respective owners. Prices are list prices captured on the date shown and are provided for comparison only; check each provider's pricing page before making decisions.
