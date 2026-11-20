@@ -1,0 +1,4 @@
+name: rebuild-test
+harness: none
+size: mars-2vcpu-4gb
+keep_warm: true
