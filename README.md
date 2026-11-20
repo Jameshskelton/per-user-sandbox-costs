@@ -45,9 +45,9 @@ Monthly cost of one sandbox per user, 1,000 users, default settings (20 sessions
 |---|---|---|
 | Fly.io Sprites | $1.08 | Files (memory only while warm) |
 | Modal Sandboxes | $1.13 | Nothing |
-| DigitalOcean Harness Runtime | $1.23 | Processes, memory, and files |
 | AWS AgentCore Runtime | $1.35 | Nothing |
 | Cloudflare Sandbox | $1.58 | Nothing |
+| DigitalOcean Harness Runtime | $1.59 | Processes, memory, and files |
 | E2B | $2.91 | Nothing (default timeout action kills the sandbox) |
 | Vercel Sandbox | $3.17 | Files |
 | Daytona (container) | $3.71 | Files |
@@ -73,12 +73,12 @@ Each release is tagged with the date its prices were checked, in the form `vYYYY
 ### v2026-11-19
 - Initial release.
 - List prices for eight providers captured November 19, 2026.
-- DigitalOcean Harness Runtime modeled on current billing per its public pricing page: CPU at a flat 25% of allocated vCPUs and memory on peak use. The docs pricing page (last verified November 5, 2026) describes active CPU billing and allocated memory; this release follows the public pricing page.
+- DigitalOcean Harness Runtime modeled per its docs pricing page (last verified November 5, 2026): CPU on actual use, memory on allocation, session storage on capacity held. DigitalOcean's public pricing page describes an interim model (CPU at a flat 25% of allocated vCPUs, memory on peak use) that gives about $1.23 per user per month at defaults; this release uses the docs page because it gives the higher cost.
 - Storage for DigitalOcean session storage and Vercel snapshots billed for the full month (running and paused), matching the Daytona convention.
 - Rebuild timing measured on three public repositories (Flask, Express, Fastify) on a Harness Runtime `mars-2vcpu-4gb` sandbox in `ric1`.
 
 ### Planned
-- When Harness Runtime active CPU billing ships: set `W6` on the **Rates** sheet to 0, re-check all prices, regenerate the tables, and tag a new release.
+- If DigitalOcean confirms that the public pricing page's interim billing applies, set `G6` to 2 and `W6` to 0.25 on the **Rates** sheet, re-check all prices, regenerate the tables, and tag a new release.
 
 ## License
 

@@ -9,10 +9,10 @@
       "item": "cpu",
       "value": 0.044,
       "unit": "USD per vCPU-hour",
-      "billing_basis": "Currently billed at a flat 25% of allocated vCPUs until active CPU billing ships",
-      "source_url": "https://www.digitalocean.com/pricing/harness-runtime",
+      "billing_basis": "Actual CPU consumed",
+      "source_url": "https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/pricing/",
       "captured_on": "2026-11-19",
-      "notes": "Public preview. The docs pricing page (last verified 2026-11-05) describes active CPU billing; the model follows the public pricing page."
+      "notes": "Public preview. Per the docs pricing page (last verified 2026-11-05). The public pricing page describes an interim flat 25% of allocated vCPUs; not used."
     },
     {
       "provider": "DigitalOcean",
@@ -20,10 +20,10 @@
       "item": "memory",
       "value": 0.0095,
       "unit": "USD per GB-hour",
-      "billing_basis": "Peak memory used",
-      "source_url": "https://www.digitalocean.com/pricing/harness-runtime",
+      "billing_basis": "Memory allocated over time",
+      "source_url": "https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/pricing/",
       "captured_on": "2026-11-19",
-      "notes": "The docs pricing page describes memory allocated over time."
+      "notes": "Per the docs pricing page. The public pricing page describes billing on peak memory used; not used."
     },
     {
       "provider": "DigitalOcean",
